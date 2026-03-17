@@ -1,7 +1,7 @@
 /*************************************************************************
 * Programming Assignment 4 for CSCI 271-001 Spring 2026
 *
-* Author: William Klement (REPLACE THIS WITH YOUR OWN NAME)
+* Author: Lexi Taylor
 * OS: Ubuntu Debian Linux 21.1
 * Compiler: g++
 * Date: March 9, 2026
@@ -60,12 +60,18 @@ template <typename T> class List{
       }
       
       // destroy the list by destroying the nodes
-      ~List(){
-
+      ~List(){ //This version uses a while loop to start at the head and loop through till the tail
+        Node<T>* cursor = this->head;
+        while (cursor != NULL) {
+          Node<T>* next = cursor->next;
+          delete cursor;
+          cursor = next;
+        }
+      this->head = NULL;
 /********************************************************************************
         // replace the following line with your code!!!!!
 *********************************************************************************/
-        cout<<"    ~List(): you need to write this method <-------------"<<endl;
+        //cout<<"    ~List(): you need to write this method <-------------"<<endl;
 
         DN += 1;  // keep track of deallocations
       }
