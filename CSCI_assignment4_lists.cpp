@@ -88,8 +88,8 @@ template <typename T> class List{
       // addLast(item) adds an element item of type T at the end of the list
       void addLast(T item){
 
-      Node<T>* newNode = new Node<T>; //creates a new node
-      newNode->element = item;
+      Node<T>* newNode1 = new Node<T>; //creates a new node
+      newNode1->element = item;
 
       Node<T>* cursor = this->head; //goes to the end of the list
       while(cursor != NULL && cursor->next != NULL) {
@@ -98,9 +98,9 @@ template <typename T> class List{
       }
 
       if(cursor == NULL) { //if the spot at the front is empty, it will have a new node
-        this->head = newNode;
+        this->head = newNode1;
       } else {
-        cursor->next = newNode; //it will go to the empty spot at the end and put a new node
+        cursor->next = newNode1; //it will go to the empty spot at the end and put a new node
       }
 /********************************************************************************
         // replace the following line with your code!!!!!
@@ -113,11 +113,21 @@ template <typename T> class List{
       // addFront(item) creates and adds a new element node 
       // containing item at the front of the list
       void addFront(T item){
+      Node<T>* newNode2 = new Node<T>; //creates a new node
+      newNode2->element = item;
 
+      Node<T>* cursor = this->head; //cursor is now the head of the list
+
+      if(cursor == NULL) { //if cursor is empty
+        this->head = newNode2; //add the new node
+      } else { //if the cursor is not empty
+        newNode2->next = this->head; //then the empty spot becomes the head
+        this->head = newNode2; //now the head is empty and you can add a node
+      }
 /********************************************************************************
         // replace the following line with your code!!!!!
 *********************************************************************************/
-        cout<<"    addFront(item): you need to write this method <-------------"<<endl;
+        cout<<"new node added at front!"<<endl;
 
         // cout<<"new node added at front !"<<endl; // your method MUST use this!
       }
