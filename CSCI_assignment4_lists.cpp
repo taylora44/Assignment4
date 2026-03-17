@@ -42,8 +42,11 @@ template <typename T> class Node{
 /********************************************************************************
         // replace the following line with your code!!!!!
 *********************************************************************************/
-      cout<<"    ~Node(): you need to write this method <-------------"<<endl;
+      //cout<<"    ~Node(): you need to write this method <-------------"<<endl;
 
+      if(this->next != NULL) { //if the next node is not empty
+        delete this->next; //destroy the next node
+      }
       // DO NOT REMOVE THE NEXT LINE: keep at end of your destructor method!!
       DN += 1;  // keep track of deallocations
     }
@@ -61,17 +64,17 @@ template <typename T> class List{
       
       // destroy the list by destroying the nodes
       ~List(){ //This version uses a while loop to start at the head and loop through till the tail
-        Node<T>* cursor = this->head;
-        while (cursor != NULL) {
-          Node<T>* next = cursor->next;
-          delete cursor;
-          cursor = next;
-        }
-      this->head = NULL;
+
 /********************************************************************************
         // replace the following line with your code!!!!!
 *********************************************************************************/
         //cout<<"    ~List(): you need to write this method <-------------"<<endl;
+
+        if(this->head != NULL) { //if the front of the list is not empty
+          delete this->head; //destroy the node in the front
+        } //the front will then tell the node next to destroy itself too)
+        this->head = NULL; //this helps prevent the second call of the destructor from causing trouble
+
 
         DN += 1;  // keep track of deallocations
       }
