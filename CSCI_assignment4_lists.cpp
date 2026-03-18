@@ -279,11 +279,21 @@ template <typename T> class List{
 
       // removeFront() deletes the last element and its node in the list
       void removeFront(){
-       
+
+        if(this->isEmpty()) { // if the list is empty
+          cout << "The list is empty !" << endl;
+
+        } else {
+          Node<T>* pNode = this->head; //hold onto the head node
+          this->head = this->head->next; //makes the head point to the second node
+          pNode->next = NULL; //disconnect the node from the list
+          pNode->~Node(); //destroy the node
+          cout << "front item removed" << endl;
+        }
 /********************************************************************************
         // replace the following line with your code!!!!!
 *********************************************************************************/
-        cout<<"    removeFront(): you need to write this method <-------------"<<endl;
+        // cout<<"    removeFront(): you need to write this method <-------------"<<endl;
 
           // cout<<"front item removed"<<endl; // your method MUST use this!
 
@@ -293,13 +303,28 @@ template <typename T> class List{
       T getAt(int index){
         T res = -9999;        // initialize the results to invalid element
 
+        if(this->isEmpty()) { //for if the list is empty
+          cout << "The list is empty !" << endl;
+        }
+
+        if(index > this->size() || index < 0) { //for if the index is out >
+          cout << "index out of bound !" << endl;
+
+        } else {
+          int count = 0;
+          Node<T>* cursor = this->head; //cursor is now the head of the list
+          while(count < index) { //while the index has not been found yet
+            cursor = cursor->next; //the cursor will continue to the next position
+            count++;
+          }
+        res = cursor->element; //get the element
 /********************************************************************************
         // replace the following line with your code!!!!!
 *********************************************************************************/
-        cout<<"    getAt(): you need to write this method <-------------"<<endl;
-
-        return res;  // return the results -- YOU MUST USE THIS!!!!
-      }
+        //cout<<"    getAt(): you need to write this method <-------------"<<endl;
+        }
+      return res;  // return the results -- YOU MUST USE THIS!!!!
+    }
 };
 
 
